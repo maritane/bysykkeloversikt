@@ -33,8 +33,7 @@ class BysykkelKlient(
     }
 
     fun getStationPayloads(): StationPayloadResponse {
-        val x = getStationStatus()
-        val stationStatuses: Collection<StationStatus> = x.data.stations
+        val stationStatuses: Collection<StationStatus> = getStationStatus().data.stations
 
         if (lastUpdated < (Instant.now().epochSecond - sekunderFoerNesteLastingAvStasjoner)) {
             logger.info { "Laster stasjoner. Last updated: $lastUpdated, ${Instant.now().epochSecond - sekunderFoerNesteLastingAvStasjoner}" }

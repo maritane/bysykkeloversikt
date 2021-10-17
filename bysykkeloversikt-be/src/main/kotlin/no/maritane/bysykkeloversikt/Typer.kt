@@ -2,8 +2,6 @@ package no.maritane.bysykkeloversikt
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
-// TODO: generics, men krever da også å sette JavaType til objectmapper.readValueMethod
-//  Mulig dette er vanskelig å få gjort i kotlin.. får se om vi får sjekket det ut
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class StationResponse(
     val last_updated: Long,

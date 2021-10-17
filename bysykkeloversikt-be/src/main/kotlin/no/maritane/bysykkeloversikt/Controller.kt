@@ -15,7 +15,6 @@ private val logger = KotlinLogging.logger {  }
 class Controller(val klient: BysykkelKlient) {
     @GetMapping("/stations")
     fun stations(): ResponseEntity<StationPayloadResponse> {
-        println("Her blr det forespurt stasjoner")
         return ResponseEntity.ok(klient.getStationPayloads())
     }
 }
