@@ -7,15 +7,16 @@ import org.springframework.web.client.RestTemplate
 import org.springframework.web.client.getForEntity
 import java.time.Instant
 
-private val logger = KotlinLogging.logger {  }
+private val logger = KotlinLogging.logger { }
 
 @Component
-class BysykkelKlient(val klient: RestTemplate = RestTemplateBuilder()
+class BysykkelKlient(
+    val klient: RestTemplate = RestTemplateBuilder()
         .defaultHeader("Client-Identifier", "maritanestad-bysykkeloversikt")
         .rootUri("https://gbfs.urbansharing.com/oslobysykkel.no")
         .build()
-)  {
-    val sekunderFoerNesteLastingAvStasjoner = 60*10
+) {
+    val sekunderFoerNesteLastingAvStasjoner = 60 * 10
 
     // Lagrer stasjoner her, så vi ikke trenger å hente nye stasjoner hvert eneste gang apiet blir kallt
     var stations: Map<String, Station> = HashMap()
@@ -40,11 +41,15 @@ class BysykkelKlient(val klient: RestTemplate = RestTemplateBuilder()
             val response: StationResponse = getStations()
 
             stations = response.data.stations
-                    .associate { Pair(it.station_id, it) }
+                .associate { Pair(it.station_id, it) }
             lastUpdated = Instant.now().epochSecond
         }
-        
-       return StationPayloadResponse(lastUpdated, 10, StationPayloadList(stationStatuses.map { toStationPayload(it) }.filterNotNull()))
+
+        return StationPayloadResponse(
+            lastUpdated,
+            10,
+            StationPayloadList(stationStatuses.map { toStationPayload(it) }.filterNotNull().sortedBy { it.name })
+        )
     }
 
     private fun toStationPayload(status: StationStatus): StationPayload? {
@@ -53,10 +58,14 @@ class BysykkelKlient(val klient: RestTemplate = RestTemplateBuilder()
             logger.error { "Kunne ikke finne stasjon med id=${status.station_id}" }
             return null
         }
-        return StationPayload(status.station_id,
-        station.name,
-        station.address,
-        status.num_bikes_available, status.num_docks_available, status.last_reported)
+        return StationPayload(
+            status.station_id,
+            station.name,
+            station.address,
+            if (status.is_installed == 1 && status.is_renting == 1) status.num_bikes_available else 0,
+            if (status.is_installed == 1 && status.is_returning == 1) status.num_docks_available else 0,
+            status.last_reported
+        )
     }
 
 

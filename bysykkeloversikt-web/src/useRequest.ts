@@ -18,7 +18,8 @@ export default function useRequest<Data = unknown, Error = unknown>(
 
     const {data: response, error, isValidating, mutate} = useSWR<AxiosResponse<Data>, AxiosError<Error>>(
         request && JSON.stringify(request), 
-        () => axios.request<Data>(request!)
+        () => axios.request<Data>(request!),
+        {refreshInterval: 10000} // hvert 10 sekund
     )
 
     return {
