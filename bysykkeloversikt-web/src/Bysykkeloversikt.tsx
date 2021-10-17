@@ -8,6 +8,7 @@ export function Bysykkeloversikt() {
     const {data, isLoading, isError } = useRequest<StationResponse, undefined>("/api/stations")
 
     const[stations, setStations] = useState<Station[]>()
+    const[filter, setFilter] = useState<string>("")
 
     useEffect(() => setStations(data?.data?.stations), [data])
 
@@ -37,15 +38,30 @@ export function Bysykkeloversikt() {
         </tr>
     }
 
+    function oppdaterFilter(e: React.FormEvent<HTMLInputElement>) {
+        setFilter(e.currentTarget.value.toLowerCase())
+    }
+
+    function filterStation(station: Station): boolean {
+        if (filter.length == 0) {
+            return true
+        }
+        return station.name.toLowerCase().startsWith(filter)
+    }
+
     return <div>
         <h1>Bysykkelstasjoner i Oslo</h1>
+        <label htmlFor="filter">Søk</label>
+        <input type="text" id="filter" onChange={oppdaterFilter}/> 
         <table>
         <tr>
             <th>Stasjon</th>
             <th>Ledige sykler</th>
             <th>Ledige låser</th>
         </tr>
-        {stations?.sort((a, b) =>a.name.localeCompare(b.name)).map((station: Station) => stationRow(station))}
+        {stations?.filter(filterStation)
+            .sort((a, b) =>a.name.localeCompare(b.name))
+            .map((station: Station) => stationRow(station))}
         </table>
     </div>
 }

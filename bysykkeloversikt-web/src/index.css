@@ -16,3 +16,10 @@ td {
   padding-right: 2rem;
 }
 
+label {
+  padding-right: 1rem;
+}
+
+footer {
+  padding-top: 3rem;
+}
