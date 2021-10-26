@@ -22,3 +22,5 @@ Applikasjonen nås ved å åpne http://localhost:3000 i en browser
 Viser i sanntid (hvert 10 sekund) oversikt over ledige bysykler og ledige låser for bysykler i Oslo. 
 Appen indikerer med farger dersom det er få eller ingen ledige låser eller sykler. 
 
+## Internt API er dokumentert med swagger
+Kan aksesseres på http://localhost:8080/swagger-ui.html

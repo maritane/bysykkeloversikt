@@ -11,7 +11,7 @@ private val logger = KotlinLogging.logger { }
 
 @Component
 class BysykkelKlient(
-    val klient: RestTemplate = RestTemplateBuilder()
+    val restTemplate: RestTemplate = RestTemplateBuilder()
         .defaultHeader("Client-Identifier", "maritanestad-bysykkeloversikt")
         .rootUri("https://gbfs.urbansharing.com/oslobysykkel.no")
         .build()
@@ -23,12 +23,12 @@ class BysykkelKlient(
     var lastUpdated: Long = 0
 
     fun getStations(): StationResponse {
-        val res = klient.getForEntity<StationResponse>("/station_information.json")
+        val res = restTemplate.getForEntity<StationResponse>("/station_information.json")
         return res.body ?: throw Exception("Feil ved henting av stasjoner, statuskode: ${res.statusCode}")
     }
 
     fun getStationStatus(): StationStatusResponse {
-        val res = klient.getForEntity<StationStatusResponse>("/station_status.json")
+        val res = restTemplate.getForEntity<StationStatusResponse>("/station_status.json")
         return res.body ?: throw Exception("Feil ved henting av stasjonsstatuser, statuskode: ${res.statusCode}")
     }
 

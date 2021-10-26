@@ -20,10 +20,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
@@ -44,9 +40,27 @@
 			<version>2.0.11</version>
 		</dependency>
 
+<!--		OpenAPI - swagger-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.5.11</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-kotlin</artifactId>
+			<version>1.5.11</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito.kotlin</groupId>
+			<artifactId>mockito-kotlin</artifactId>
+			<version>4.0.0</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

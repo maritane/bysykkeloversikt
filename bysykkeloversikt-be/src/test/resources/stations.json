@@ -1,0 +1,69 @@
+{
+  "last_updated": 1635198661,
+  "ttl": 10,
+  "version": "2.2",
+  "data": {
+    "stations": [
+      {
+        "station_id": "2315",
+        "name": "Rostockgata",
+        "address": "Rostockgata 5",
+        "rental_uris": {
+          "android": "oslobysykkel://stations/2315",
+          "ios": "oslobysykkel://stations/2315"
+        },
+        "lat": 59.90691970255054,
+        "lon": 10.760311802881915,
+        "capacity": 18
+      },
+      {
+        "station_id": "2309",
+        "name": "Ulven Torg",
+        "address": "Ulvenveien 89",
+        "rental_uris": {
+          "android": "oslobysykkel://stations/2309",
+          "ios": "oslobysykkel://stations/2309"
+        },
+        "lat": 59.92503517848644,
+        "lon": 10.81202182917832,
+        "capacity": 30
+      },
+      {
+        "station_id": "2308",
+        "name": "Gunerius",
+        "address": "Storgata 33",
+        "rental_uris": {
+          "android": "oslobysykkel://stations/2308",
+          "ios": "oslobysykkel://stations/2308"
+        },
+        "lat": 59.91463805889239,
+        "lon": 10.75342798022669,
+        "capacity": 12
+      },
+      {
+        "station_id": "2307",
+        "name": "Domus Athletica",
+        "address": "Trimveien 4",
+        "rental_uris": {
+          "android": "oslobysykkel://stations/2307",
+          "ios": "oslobysykkel://stations/2307"
+        },
+        "lat": 59.946219381760216,
+        "lon": 10.724626314653563,
+        "capacity": 30
+      },
+      {
+        "station_id": "2306",
+        "name": "Økern Portal",
+        "address": "Lørenfaret 1",
+        "rental_uris": {
+          "android": "oslobysykkel://stations/2306",
+          "ios": "oslobysykkel://stations/2306"
+        },
+        "lat": 59.930903961728745,
+        "lon": 10.80193969590286,
+        "capacity": 18
+      }
+    ]
+  }
+}
